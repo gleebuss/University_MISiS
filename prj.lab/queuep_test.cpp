@@ -168,17 +168,3 @@ TEST_CASE("istream") {
 
 	CHECK(get == result);
 }
-
-TEST_CASE("copy") {
-	QueueP r;
-	r.push(123);
-	r.push(4);
-	r.push(-19);
-	r.push(100);
-	r.push(-10);
-
-	QueueP p(init(10));
-	p.print();
-	std::cout << std::endl;
-	r.print();
-}

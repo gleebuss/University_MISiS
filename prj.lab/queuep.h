@@ -13,7 +13,7 @@ public:
 	QueueP(const QueueP& p) noexcept;
 	QueueP(QueueP&& p) noexcept;
 	QueueP& operator=(const QueueP& p);
-	//QueueP& operator=(QueueP &&p);
+	QueueP& operator=(QueueP &&p);
 	~QueueP();
 
 	void push(int data) noexcept;
@@ -48,6 +48,7 @@ private:
 		std::unique_ptr<Node> next;
 	};
 	std::unique_ptr<Node> head;
+	void remove_all();
 };
 
 void random(std::vector<int>& vec, QueueP& p, int& size);

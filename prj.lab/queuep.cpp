@@ -15,10 +15,16 @@ QueueP::QueueP(const QueueP& p) noexcept {
 
 QueueP::QueueP(QueueP&& p) noexcept : head(std::move(p.head)) { p.head = nullptr;}
 
+QueueP& QueueP::operator=(QueueP &&p) {
+	remove_all();
+	head = std::move(p.head);
+	p.head = nullptr;
+	return *this;
+}
+
 QueueP& QueueP::operator=(const QueueP& p)
 {
-	while (head)
-		head = std::move(head->next);
+	remove_all();
 
 	auto temp = p.head.get();
 	while (temp) {
@@ -30,6 +36,10 @@ QueueP& QueueP::operator=(const QueueP& p)
 
 QueueP::~QueueP()
 {
+	remove_all();
+}
+
+void QueueP::remove_all(){
 	while (head)
 		head = std::move(head->next);
 }
